@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Web Programming Portfolio{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Web Programming Portfolio — David Eid</h1>
+        <p>A live site that grows one page or feature every week.</p>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>Web Programming — built with Flask and deployed on Render.</p>
+
+        <p>
+            This website is created for educational purposes only, as part of the
+            GIN446 - Web Programming course, School of Engineering, USEK.
+            (Fall 2026-2027)
+        </p>
+    </footer>
+
+</body>
+
+</html>

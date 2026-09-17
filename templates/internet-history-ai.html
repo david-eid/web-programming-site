@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="David Eid">
-    <meta name="description" content="The history of the Internet, its major milestones, and its key technologies.">
-    <title>History of the Internet</title>
-</head>
+{% extends "base.html" %}
 
-<body>
-    <header id="top">
-        <h1>History of the Internet</h1>
+{% block title %}
+History of the Internet
+{% endblock %}
 
-        <p>GIN446 - Web Programming</p>
-        <p>Prepared by: David Eid</p>
+{% block heading %}
+History of the Internet
+{% endblock %}
 
-        <nav aria-label="Main navigation">
+{% block content %}
+
+<div id="top">
+    <p>GIN446 - Web Programming</p>
+    <p>Prepared by: David Eid</p>
+</div>
+
+<nav aria-label="Main navigation">
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="#introduction">Introduction</a></li>
@@ -24,412 +24,404 @@
         <li><a href="#references">References</a></li>
     </ul>
 </nav>
-    </header>
 
-    <main>
-        <section id="introduction">
-            <h2>Introduction</h2>
+<section id="introduction">
+    <h2>Introduction</h2>
 
-            <p>
-                The Internet is a worldwide network that allows computers and
-                devices to communicate with each other. It developed gradually
-                from early networking research such as ARPANET. Technologies
-                such as packet switching and TCP/IP made it possible to connect
-                different networks together. Over time, the Internet expanded
-                from a research network into the global communication system
-                used today.
-            </p>
+    <p>
+        The Internet is a worldwide network that allows computers and
+        devices to communicate with each other. It developed gradually
+        from early networking research such as ARPANET. Technologies
+        such as packet switching and TCP/IP made it possible to connect
+        different networks together. Over time, the Internet expanded
+        from a research network into the global communication system
+        used today.
+    </p>
 
-            <p>
-                The Internet and the World Wide Web are not the same. The
-                Internet is the network infrastructure, while the World Wide
-                Web is a service that operates on top of it.
-            </p>
-        </section>
+    <p>
+        The Internet and the World Wide Web are not the same. The
+        Internet is the network infrastructure, while the World Wide
+        Web is a service that operates on top of it.
+    </p>
+</section>
 
-        <section id="milestones">
-            <h2>Chronological Internet Milestones</h2>
+<section id="milestones">
+    <h2>Chronological Internet Milestones</h2>
 
-            <article id="arpanet-planning">
-                <h3>1967 - ARPANET Planning</h3>
+    <article id="arpanet-planning">
+        <h3>1967 - ARPANET Planning</h3>
 
-                <p>
-                    In 1967, Larry Roberts developed and published a plan for
-                    ARPANET while working with DARPA. This was important because
-                    it moved packet-switching networking from theory toward a
-                    practical research network connecting different
-                    institutions.
-                </p>
+        <p>
+            In 1967, Larry Roberts developed and published a plan for
+            ARPANET while working with DARPA. This was important because
+            it moved packet-switching networking from theory toward a
+            practical research network connecting different
+            institutions.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
+        </p>
+    </article>
 
-            <article id="arpanet-begins">
-                <h3>1969 - ARPANET Begins</h3>
+    <article id="arpanet-begins">
+        <h3>1969 - ARPANET Begins</h3>
 
-                <p>
-                    In 1969, ARPANET began with four computer nodes, and the
-                    first computer-to-computer signal was sent between UCLA and
-                    the Stanford Research Institute on October 29. This
-                    demonstrated that computers at different locations could
-                    successfully communicate through a packet-switched network.
-                </p>
+        <p>
+            In 1969, ARPANET began with four computer nodes, and the
+            first computer-to-computer signal was sent between UCLA and
+            the Stanford Research Institute on October 29. This
+            demonstrated that computers at different locations could
+            successfully communicate through a packet-switched network.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.darpa.mil/news/features/arpanet"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.darpa.mil/news/features/arpanet</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.darpa.mil/news/features/arpanet"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.darpa.mil/news/features/arpanet</a>
+        </p>
+    </article>
 
-            <article id="network-email">
-                <h3>1971-1972 - Network Email Develops</h3>
+    <article id="network-email">
+        <h3>1971-1972 - Network Email Develops</h3>
 
-                <p>
-                    Ray Tomlinson developed network email and introduced the use
-                    of the “@” symbol to separate the user name from the
-                    destination address. Email quickly became one of the
-                    earliest and most widely used applications on computer
-                    networks.
-                </p>
+        <p>
+            Ray Tomlinson developed network email and introduced the use
+            of the “@” symbol to separate the user name from the
+            destination address. Email quickly became one of the
+            earliest and most widely used applications on computer
+            networks.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.internethalloffame.org/inductee/raymond-tomlinson/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internethalloffame.org/inductee/raymond-tomlinson/</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.internethalloffame.org/inductee/raymond-tomlinson/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internethalloffame.org/inductee/raymond-tomlinson/</a>
+        </p>
+    </article>
 
-            <article id="internetworking-research">
-                <h3>1973 - Internetworking Research Begins</h3>
+    <article id="internetworking-research">
+        <h3>1973 - Internetworking Research Begins</h3>
 
-                <p>
-                    DARPA began research into connecting different
-                    packet-switched networks. This was essential because it
-                    introduced the idea of connecting independent networks into
-                    a larger “network of networks,” which became a central
-                    principle of the Internet.
-                </p>
+        <p>
+            DARPA began research into connecting different
+            packet-switched networks. This was essential because it
+            introduced the idea of connecting independent networks into
+            a larger “network of networks,” which became a central
+            principle of the Internet.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
+        </p>
+    </article>
 
-            <article id="tcp-design">
-                <h3>1974 - TCP Design</h3>
+    <article id="tcp-design">
+        <h3>1974 - TCP Design</h3>
 
-                <p>
-                    Robert Kahn and Vinton Cerf developed the early design of
-                    the Transmission Control Protocol. Their work made it
-                    possible for different computer networks to communicate
-                    with one another and helped establish the concept of an
-                    interconnected “network of networks.”
-                </p>
+        <p>
+            Robert Kahn and Vinton Cerf developed the early design of
+            the Transmission Control Protocol. Their work made it
+            possible for different computer networks to communicate
+            with one another and helped establish the concept of an
+            interconnected “network of networks.”
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
+        </p>
+    </article>
 
-            <article id="tcp-ip-transition">
-                <h3>1983 - ARPANET Switches to TCP/IP</h3>
+    <article id="tcp-ip-transition">
+        <h3>1983 - ARPANET Switches to TCP/IP</h3>
 
-                <p>
-                    On January 1, 1983, ARPANET completed its transition from
-                    NCP to TCP/IP. TCP/IP allowed different networks and
-                    computers to communicate using a common protocol suite and
-                    became the technical foundation of the modern Internet.
-                </p>
+        <p>
+            On January 1, 1983, ARPANET completed its transition from
+            NCP to TCP/IP. TCP/IP allowed different networks and
+            computers to communicate using a common protocol suite and
+            became the technical foundation of the modern Internet.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
+        </p>
+    </article>
 
-            <article id="nsfnet">
-                <h3>1986 - NSFNET Expands Academic Networking</h3>
+    <article id="nsfnet">
+        <h3>1986 - NSFNET Expands Academic Networking</h3>
 
-                <p>
-                    The U.S. National Science Foundation developed NSFNET to
-                    connect researchers and supercomputer centers. NSFNET became
-                    an important high-speed backbone and helped expand Internet
-                    access throughout universities and research institutions.
-                </p>
+        <p>
+            The U.S. National Science Foundation developed NSFNET to
+            connect researchers and supercomputer centers. NSFNET became
+            an important high-speed backbone and helped expand Internet
+            access throughout universities and research institutions.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.nsf.gov/impacts/internet"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.nsf.gov/impacts/internet</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.nsf.gov/impacts/internet"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.nsf.gov/impacts/internet</a>
+        </p>
+    </article>
 
-            <article id="arpanet-decommissioned">
-                <h3>1990 - ARPANET Is Decommissioned</h3>
+    <article id="arpanet-decommissioned">
+        <h3>1990 - ARPANET Is Decommissioned</h3>
 
-                <p>
-                    ARPANET was shut down in 1990. By this time, TCP/IP
-                    networking had expanded far beyond the original ARPANET,
-                    showing that the Internet had developed into a much larger
-                    interconnected system.
-                </p>
+        <p>
+            ARPANET was shut down in 1990. By this time, TCP/IP
+            networking had expanded far beyond the original ARPANET,
+            showing that the Internet had developed into a much larger
+            interconnected system.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
+        </p>
+    </article>
 
-            <article id="nsfnet-transition">
-                <h3>1995 - NSFNET Backbone Transition</h3>
+    <article id="nsfnet-transition">
+        <h3>1995 - NSFNET Backbone Transition</h3>
 
-                <p>
-                    The NSFNET backbone service ended as commercial and
-                    privately operated Internet networks expanded. This
-                    represented an important transition toward the commercial
-                    Internet infrastructure used by the public.
-                </p>
+        <p>
+            The NSFNET backbone service ended as commercial and
+            privately operated Internet networks expanded. This
+            represented an important transition toward the commercial
+            Internet infrastructure used by the public.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.nsf.gov/impacts/internet"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.nsf.gov/impacts/internet</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.nsf.gov/impacts/internet"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.nsf.gov/impacts/internet</a>
+        </p>
+    </article>
 
-            <article id="wifi-standard">
-                <h3>1997 - Wi-Fi Standard</h3>
+    <article id="wifi-standard">
+        <h3>1997 - Wi-Fi Standard</h3>
 
-                <p>
-                    In 1997, the IEEE 802.11 wireless networking standard was
-                    published. Wi-Fi made it possible for devices to connect to
-                    networks without physical cables and eventually made home
-                    and mobile Internet access much more convenient.
-                </p>
+        <p>
+            In 1997, the IEEE 802.11 wireless networking standard was
+            published. Wi-Fi made it possible for devices to connect to
+            networks without physical cables and eventually made home
+            and mobile Internet access much more convenient.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/</a>
+        </p>
+    </article>
 
-            <article id="icann">
-                <h3>1998 - ICANN Is Formed</h3>
+    <article id="icann">
+        <h3>1998 - ICANN Is Formed</h3>
 
-                <p>
-                    ICANN was formed in 1998 to coordinate important Internet
-                    identifiers such as domain names and related numbering
-                    systems. It provided a new international structure for
-                    managing critical Internet resources as the network
-                    continued to expand globally.
-                </p>
+        <p>
+            ICANN was formed in 1998 to coordinate important Internet
+            identifiers such as domain names and related numbering
+            systems. It provided a new international structure for
+            managing critical Internet resources as the network
+            continued to expand globally.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.icann.org/resources/pages/about-icann"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.icann.org/resources/pages/about-icann</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.icann.org/resources/pages/about-icann"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.icann.org/resources/pages/about-icann</a>
+        </p>
+    </article>
 
-            <p><a href="#top">Back to top</a></p>
-        </section>
+    <p><a href="#top">Back to top</a></p>
+</section>
 
-        <section id="technologies">
-            <h2>Three Key Internet Technologies</h2>
+<section id="technologies">
+    <h2>Three Key Internet Technologies</h2>
 
-            <article id="packet-switching">
-                <h3>1. Packet Switching</h3>
+    <article id="packet-switching">
+        <h3>1. Packet Switching</h3>
 
-                <p>
-                    Packet switching divides data into smaller pieces called
-                    packets. These packets can travel through a network and are
-                    reassembled when they reach their destination. This approach
-                    was fundamental to early computer networking and ARPANET.
-                </p>
+        <p>
+            Packet switching divides data into smaller pieces called
+            packets. These packets can travel through a network and are
+            reassembled when they reach their destination. This approach
+            was fundamental to early computer networking and ARPANET.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
+        </p>
+    </article>
 
-            <article id="tcp-ip">
-                <h3>2. TCP/IP</h3>
+    <article id="tcp-ip">
+        <h3>2. TCP/IP</h3>
 
-                <p>
-                    TCP/IP refers to the Transmission Control Protocol and
-                    Internet Protocol, which together form the foundation of the
-                    Internet Protocol suite.
-                </p>
+        <p>
+            TCP/IP refers to the Transmission Control Protocol and
+            Internet Protocol, which together form the foundation of the
+            Internet Protocol suite.
+        </p>
 
-                <p>
-                    TCP helps manage reliable communication between computers,
-                    while IP handles addressing and forwarding packets between
-                    networks. TCP/IP was essential because it allowed different
-                    networks to communicate with each other. The Internet
-                    Society documents the transition of ARPANET to TCP/IP on
-                    January 1, 1983.
-                </p>
+        <p>
+            TCP helps manage reliable communication between computers,
+            while IP handles addressing and forwarding packets between
+            networks. TCP/IP was essential because it allowed different
+            networks to communicate with each other. The Internet
+            Society documents the transition of ARPANET to TCP/IP on
+            January 1, 1983.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
+        </p>
+    </article>
 
-            <article id="routers">
-                <h3>3. Routers</h3>
+    <article id="routers">
+        <h3>3. Routers</h3>
 
-                <p>
-                    Routers connect different computer networks and decide where
-                    packets should be sent. Early Internet research referred to
-                    these connecting devices as gateways; they later became
-                    known as routers.
-                </p>
+        <p>
+            Routers connect different computer networks and decide where
+            packets should be sent. Early Internet research referred to
+            these connecting devices as gateways; they later became
+            known as routers.
+        </p>
 
-                <p>
-                    Source:
-                    <a
-                        href="https://www.internetsociety.org/internet/history-internet/brief-history-internet-related-networks/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internetsociety.org/internet/history-internet/brief-history-internet-related-networks/</a>
-                </p>
-            </article>
+        <p>
+            Source:
+            <a
+                href="https://www.internetsociety.org/internet/history-internet/brief-history-internet-related-networks/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internetsociety.org/internet/history-internet/brief-history-internet-related-networks/</a>
+        </p>
+    </article>
 
-            <p><a href="#top">Back to top</a></p>
-        </section>
+    <p><a href="#top">Back to top</a></p>
+</section>
 
-        <section id="references">
-            <h2>References</h2>
+<section id="references">
+    <h2>References</h2>
 
-            <ul>
-                <li>
-                    Internet Society - A Brief History of the Internet:
-                    <a
-                        href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
-                </li>
+    <ul>
+        <li>
+            Internet Society - A Brief History of the Internet:
+            <a
+                href="https://www.internetsociety.org/internet/history-internet/brief-history-internet/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internetsociety.org/internet/history-internet/brief-history-internet/</a>
+        </li>
 
-                <li>
-                    Internet Society - A Brief History of the Internet and
-                    Related Networks:
-                    <a
-                        href="https://www.internetsociety.org/internet/history-internet/brief-history-internet-related-networks/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internetsociety.org/internet/history-internet/brief-history-internet-related-networks/</a>
-                </li>
+        <li>
+            Internet Society - A Brief History of the Internet and
+            Related Networks:
+            <a
+                href="https://www.internetsociety.org/internet/history-internet/brief-history-internet-related-networks/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internetsociety.org/internet/history-internet/brief-history-internet-related-networks/</a>
+        </li>
 
-                <li>
-                    DARPA - ARPANET:
-                    <a
-                        href="https://www.darpa.mil/news/features/arpanet"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.darpa.mil/news/features/arpanet</a>
-                </li>
+        <li>
+            DARPA - ARPANET:
+            <a
+                href="https://www.darpa.mil/news/features/arpanet"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.darpa.mil/news/features/arpanet</a>
+        </li>
 
-                <li>
-                    Internet Hall of Fame - Raymond Tomlinson:
-                    <a
-                        href="https://www.internethalloffame.org/inductee/raymond-tomlinson/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.internethalloffame.org/inductee/raymond-tomlinson/</a>
-                </li>
+        <li>
+            Internet Hall of Fame - Raymond Tomlinson:
+            <a
+                href="https://www.internethalloffame.org/inductee/raymond-tomlinson/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.internethalloffame.org/inductee/raymond-tomlinson/</a>
+        </li>
 
-                <li>
-                    U.S. National Science Foundation - Birth of the Commercial
-                    Internet:
-                    <a
-                        href="https://www.nsf.gov/impacts/internet"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.nsf.gov/impacts/internet</a>
-                </li>
+        <li>
+            U.S. National Science Foundation - Birth of the Commercial
+            Internet:
+            <a
+                href="https://www.nsf.gov/impacts/internet"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.nsf.gov/impacts/internet</a>
+        </li>
 
-                <li>
-                    IEEE - Evolution of Wi-Fi Technology and Standards:
-                    <a
-                        href="https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/</a>
-                </li>
+        <li>
+            IEEE - Evolution of Wi-Fi Technology and Standards:
+            <a
+                href="https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://standards.ieee.org/beyond-standards/the-evolution-of-wi-fi-technology-and-standards/</a>
+        </li>
 
-                <li>
-                    ICANN - About ICANN:
-                    <a
-                        href="https://www.icann.org/resources/pages/about-icann"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >https://www.icann.org/resources/pages/about-icann</a>
-                </li>
-            </ul>
+        <li>
+            ICANN - About ICANN:
+            <a
+                href="https://www.icann.org/resources/pages/about-icann"
+                target="_blank"
+                rel="noopener noreferrer"
+            >https://www.icann.org/resources/pages/about-icann</a>
+        </li>
+    </ul>
 
-            <p><a href="#top">Back to top</a></p>
-        </section>
-    </main>
+    <p><a href="#top">Back to top</a></p>
+</section>
 
-    <footer>
-        <p>Web Programming — built with Flask and deployed on Render.</p>
-        <p>This website is created for educational purposes only, as part of the GIN446 - Web Programming course, School of Engineering, USEK. (Fall 2026-2027)</p>
-    </footer>
-</body>
-</html>
+{% endblock %}
