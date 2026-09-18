@@ -13,16 +13,64 @@
 <body>
 
     <header>
-        <h1>Web Programming Portfolio — David Eid</h1>
+
+        <div class="logo">
+            <a href="{{ url_for('home') }}">
+                David Eid
+            </a>
+        </div>
+
+        <h1>
+            {% block heading %}
+            Web Programming Portfolio — David Eid
+            {% endblock %}
+        </h1>
+
         <p>A live site that grows one page or feature every week.</p>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="{{ url_for('home') }}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('internet_history') }}">
+                        Internet History
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('web_history') }}">
+                        Web History
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('internet_history_ai') }}">
+                        Internet History AI
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('web_history_ai') }}">
+                        Web History AI
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
     </header>
 
     <main>
+
         {% block content %}
         {% endblock %}
+
     </main>
 
     <footer>
+
         <p>Web Programming — built with Flask and deployed on Render.</p>
 
         <p>
@@ -30,6 +78,7 @@
             GIN446 - Web Programming course, School of Engineering, USEK.
             (Fall 2026-2027)
         </p>
+
     </footer>
 
 </body>
