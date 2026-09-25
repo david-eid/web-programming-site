@@ -1,0 +1,139 @@
+/* Form-only styles reuse the portfolio's colors, typography, and spacing. */
+.profile-form {
+    max-width: 960px;
+    color-scheme: dark;
+}
+
+.profile-form fieldset {
+    min-width: 0;
+    margin: 0 0 var(--space-lg);
+    padding: clamp(1rem, 3vw, 2rem);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-medium);
+    background: var(--bg-secondary);
+}
+
+.profile-form legend {
+    max-width: 100%;
+    padding: 0 var(--space-xs);
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+    font-weight: 650;
+}
+
+.profile-form .form-grid,
+.profile-form .skills-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-md);
+}
+
+.profile-form .form-field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.profile-form label {
+    font-weight: 550;
+    cursor: pointer;
+}
+
+.profile-form input,
+.profile-form select,
+.profile-form textarea,
+.profile-form button {
+    max-width: 100%;
+    min-width: 0;
+    font: inherit;
+}
+
+.profile-form input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.profile-form select,
+.profile-form textarea {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-small);
+    background: var(--bg-main);
+    color: var(--text-primary);
+}
+
+.profile-form textarea { resize: vertical; }
+.profile-form ::placeholder { color: var(--text-muted); opacity: 1; }
+.profile-form small { color: var(--text-muted); }
+.profile-form select[multiple] { min-height: 12rem; }
+.profile-form option { padding: 0.25rem; }
+.profile-form input[type="color"] { max-width: 8rem; cursor: pointer; }
+
+.profile-form .choice-group {
+    margin: var(--space-md) 0 0;
+    padding: var(--space-sm);
+    background: var(--bg-main);
+}
+
+.profile-form .choice-group legend { font-size: 1rem; }
+.profile-form .choices { display: flex; flex-wrap: wrap; gap: var(--space-md); }
+.profile-form .skills-grid { margin-bottom: var(--space-lg); gap: var(--space-sm); }
+
+.profile-form .choices > div,
+.profile-form .skills-grid > div,
+.profile-form .consent {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xs);
+}
+
+.profile-form input[type="checkbox"],
+.profile-form input[type="radio"] {
+    flex: 0 0 auto;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0.3rem 0 0;
+    accent-color: var(--accent-gold);
+    cursor: pointer;
+}
+
+.profile-form :is(input, select, textarea, button):focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 3px;
+}
+
+/* Show errors after interaction, without marking the initial empty form red. */
+.profile-form :is(input, select, textarea):user-invalid {
+    border-color: #f49c92;
+    outline-color: #f49c92;
+}
+
+.profile-form .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.profile-form button {
+    min-height: 46px;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid var(--accent-gold);
+    border-radius: var(--radius-small);
+    background: var(--accent-gold);
+    color: var(--bg-main);
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.profile-form button[type="reset"] {
+    background: var(--bg-secondary);
+    color: var(--accent-gold);
+}
+
+.profile-form button:hover { background: var(--text-primary); color: var(--bg-main); }
+
+@media (min-width: 700px) {
+    .profile-form .form-grid,
+    .profile-form .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .profile-form .full-width { grid-column: 1 / -1; }
+}

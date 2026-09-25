@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block title %}Engineering Student Profile{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='form_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2>Engineering Student Profile</h2>
+<p>Complete this form to provide information about your academic background,
+technical skills, internship experience, and Final Year Project preferences.</p>
+<p>Fields marked (required) must be completed.</p>
+
+<form class="profile-form" action="{{ url_for('submit_profile') }}" method="post">
+    <fieldset>
+        <legend>1. Personal Information</legend>
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="student_id">Student ID (required)</label>
+                <input type="text" id="student_id" name="student_id" required pattern="[0-9]{9}" inputmode="numeric" aria-describedby="student-id-help" title="Enter exactly 9 digits.">
+                <small id="student-id-help">Exactly 9 digits, including any leading zeros.</small>
+            </div>
+            <div class="form-field">
+                <label for="fullname">Full name (required)</label>
+                <input type="text" id="fullname" name="fullname" required autocomplete="name">
+            </div>
+            <div class="form-field">
+                <label for="email">USEK email (required)</label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+            <div class="form-field">
+                <label for="phone">Mobile number</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+            <div class="form-field">
+                <label for="birthdate">Date of birth</label>
+                <input type="date" id="birthdate" name="birthdate" autocomplete="bday">
+            </div>
+            <div class="form-field">
+                <label for="portfolio">Portfolio / GitHub URL</label>
+                <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/username">
+            </div>
+            <div class="form-field">
+                <label for="gin446">GIN446 website URL</label>
+                <input type="url" id="gin446" name="gin446" placeholder="https://your-site.onrender.com">
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>2. Academic Information</legend>
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="major">Engineering major (required)</label>
+                <select id="major" name="major" required>
+                    <option value="">Select your major</option>
+                    <option value="computer">Computer Engineering</option>
+                    <option value="electrical">Electrical Engineering</option>
+                    <option value="biomedical">Biomedical Engineering</option>
+                    <option value="telecommunications">Telecommunications Engineering</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="gpa">Current GPA / 100 (required)</label>
+                <input type="number" id="gpa" name="gpa" min="40" max="100" step="0.01" required>
+            </div>
+            <div class="form-field">
+                <label for="credits">Credits completed / 148</label>
+                <input type="number" id="credits" name="credits" min="0" max="148" step="1">
+            </div>
+            <div class="form-field">
+                <label for="graduation_month">Expected graduation month and year</label>
+                <input type="month" id="graduation_month" name="graduation_month">
+            </div>
+        </div>
+        <fieldset class="choice-group">
+            <legend>Expected graduation (required)</legend>
+            <div class="choices">
+                <div><input type="radio" id="graduation-spring" name="graduation" value="spring" required> <label for="graduation-spring">Spring</label></div>
+                <div><input type="radio" id="graduation-summer" name="graduation" value="summer" required> <label for="graduation-summer">Summer</label></div>
+                <div><input type="radio" id="graduation-fall" name="graduation" value="fall" required> <label for="graduation-fall">Fall</label></div>
+            </div>
+        </fieldset>
+        <fieldset class="choice-group">
+            <legend>Have you completed an engineering internship?</legend>
+            <div class="choices">
+                <div><input type="radio" id="internship-yes" name="internship_completed" value="yes"> <label for="internship-yes">Yes</label></div>
+                <div><input type="radio" id="internship-no" name="internship_completed" value="no"> <label for="internship-no">No</label></div>
+            </div>
+        </fieldset>
+    </fieldset>
+
+    <fieldset>
+        <legend>3. Technical Background</legend>
+        <p id="skills-help">Select all areas in which you have experience:</p>
+        <div class="skills-grid" role="group" aria-labelledby="skills-help">
+            <div><input type="checkbox" id="skill-programming" name="skills" value="programming"> <label for="skill-programming">Programming</label></div>
+            <div><input type="checkbox" id="skill-embedded" name="skills" value="embedded-systems"> <label for="skill-embedded">Embedded Systems</label></div>
+            <div><input type="checkbox" id="skill-electronics" name="skills" value="electronics"> <label for="skill-electronics">Electronics</label></div>
+            <div><input type="checkbox" id="skill-networks" name="skills" value="computer-networks"> <label for="skill-networks">Computer Networks</label></div>
+            <div><input type="checkbox" id="skill-telecommunications" name="skills" value="telecommunications"> <label for="skill-telecommunications">Telecommunications</label></div>
+            <div><input type="checkbox" id="skill-biomedical" name="skills" value="biomedical-instrumentation"> <label for="skill-biomedical">Biomedical Instrumentation</label></div>
+            <div><input type="checkbox" id="skill-ai" name="skills" value="artificial-intelligence / machine-learning"> <label for="skill-ai">Artificial Intelligence / Machine Learning</label></div>
+            <div><input type="checkbox" id="skill-signal" name="skills" value="signal-processing"> <label for="skill-signal">Signal Processing</label></div>
+        </div>
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="language">Primary programming language</label>
+                <input type="text" id="language" name="language" list="programming-languages">
+                <datalist id="programming-languages">
+                    <option value="C"></option>
+                    <option value="C++"></option>
+                    <option value="Java"></option>
+                    <option value="Python"></option>
+                    <option value="JavaScript"></option>
+                    <option value="MATLAB"></option>
+                </datalist>
+            </div>
+            <div class="form-field">
+                <label for="software">Engineering software used</label>
+                <select id="software" name="software" multiple size="6" aria-describedby="software-help">
+                    <option value="MATLAB">MATLAB</option>
+                    <option value="Simulink">Simulink</option>
+                    <option value="LabVIEW">LabVIEW</option>
+                    <option value="LTspice">LTspice</option>
+                    <option value="Vivado">Vivado</option>
+                    <option value="SolidWorks">SolidWorks</option>
+                </select>
+                <small id="software-help">Hold Ctrl (Windows) or Command (Mac) to select several options.</small>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>4. Final Year Project</legend>
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="project_title">Proposed project title</label>
+                <input type="text" id="project_title" name="project_title">
+            </div>
+            <div class="form-field">
+                <label for="project_area">Preferred project area</label>
+                <select id="project_area" name="project_area">
+                    <option value="">Select a project area</option>
+                    <optgroup label="Computer Engineering">
+                        <option value="artificial-intelligence">Artificial Intelligence</option>
+                        <option value="web-applications">Web Applications</option>
+                        <option value="cybersecurity">Cybersecurity</option>
+                        <option value="internet-of-things">Internet of Things</option>
+                    </optgroup>
+                    <optgroup label="Electrical Engineering">
+                        <option value="power-systems">Power Systems</option>
+                        <option value="renewable-energy">Renewable Energy</option>
+                        <option value="control-systems">Control Systems</option>
+                    </optgroup>
+                    <optgroup label="Biomedical Engineering">
+                        <option value="medical-imaging">Medical Imaging</option>
+                        <option value="biosensors">Biosensors</option>
+                        <option value="medical-devices">Medical Devices</option>
+                    </optgroup>
+                    <optgroup label="Telecommunications Engineering">
+                        <option value="wireless-communications">Wireless Communications</option>
+                        <option value="5g / 6g-networks">5G / 6G Networks</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-field full-width">
+                <label for="description">Brief project description</label>
+                <textarea id="description" name="description" rows="5" maxlength="2000" aria-describedby="description-help" placeholder="Describe the problem, proposed solution, and expected outcome."></textarea>
+                <small id="description-help">Maximum 2,000 characters.</small>
+            </div>
+            <div class="form-field">
+                <label for="team_size">Preferred team size</label>
+                <input type="number" id="team_size" name="team_size" min="1" max="6" step="1" value="2">
+            </div>
+            <div class="form-field">
+                <label for="project_color">Project dashboard color</label>
+                <input type="color" id="project_color" name="project_color" value="#c8ad7f">
+            </div>
+            <div class="form-field">
+                <label for="meeting_date">Preferred meeting date</label>
+                <input type="date" id="meeting_date" name="meeting_date">
+            </div>
+            <div class="form-field">
+                <label for="meeting_time">Preferred meeting time</label>
+                <input type="time" id="meeting_time" name="meeting_time">
+            </div>
+        </div>
+    </fieldset>
+
+    <input type="hidden" name="form_version" value="2026-2027">
+    <div class="consent">
+        <input type="checkbox" id="confirmation" name="confirmation" value="yes" required>
+        <label for="confirmation">I confirm that the information provided is accurate.</label>
+    </div>
+    <div class="form-actions">
+        <button type="submit">Submit Profile</button>
+        <button type="reset">Clear Form</button>
+    </div>
+</form>
+{% endblock %}
