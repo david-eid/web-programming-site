@@ -13,23 +13,27 @@
 
 <body>
 
-    <header>
+    <header class="site-header">
+        <div class="hero">
+            <div class="hero-brand">
+                <div class="logo">
+                    <a href="{{ url_for('home') }}">David Eid</a>
+                </div>
+            </div>
 
-        <div class="logo">
-            <a href="{{ url_for('home') }}">
-                David Eid
-            </a>
+            <div class="hero-content">
+                <span class="hero-watermark" aria-hidden="true">GIN446</span>
+                <h1>
+                    {% block heading %}
+                    Web Programming Portfolio &mdash; David Eid
+                    {% endblock %}
+                </h1>
+                <span class="hero-rule" aria-hidden="true"></span>
+                <p class="hero-subtitle">A live site that grows one page or feature every week.</p>
+            </div>
         </div>
 
-        <h1>
-            {% block heading %}
-            Web Programming Portfolio — David Eid
-            {% endblock %}
-        </h1>
-
-        <p>A live site that grows one page or feature every week.</p>
-
-        <nav>
+        <nav class="main-nav" aria-label="Primary navigation">
             <ul>
                 <li>
                     <a href="{{ url_for('home') }}">Home</a>
@@ -59,8 +63,8 @@
                     </a>
                 </li>
                 <li>
-    <a href="{{ url_for('submit_profile') }}">Student Profile</a>
-</li>
+                    <a href="{{ url_for('submit_profile') }}">Student Profile</a>
+                </li>
             </ul>
         </nav>
 

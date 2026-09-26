@@ -7,13 +7,24 @@
 {% endblock %}
 
 {% block content %}
+<div class="profile-page">
+<div class="profile-intro">
+<p class="profile-eyebrow">GIN446 / WEB PROGRAMMING</p>
 <h2>Engineering Student Profile</h2>
 <p>Complete this form to provide information about your academic background,
 technical skills, internship experience, and Final Year Project preferences.</p>
-<p>Fields marked (required) must be completed.</p>
+<p class="profile-required">Fields marked (required) must be completed.</p>
+</div>
+
+<ol class="profile-sections" aria-label="Form sections">
+    <li><a href="#personal"><span aria-hidden="true">01</span>Personal</a></li>
+    <li><a href="#academic"><span aria-hidden="true">02</span>Academic</a></li>
+    <li><a href="#technical"><span aria-hidden="true">03</span>Technical</a></li>
+    <li><a href="#project"><span aria-hidden="true">04</span>Final Year Project</a></li>
+</ol>
 
 <form class="profile-form" action="{{ url_for('submit_profile') }}" method="post">
-    <fieldset>
+    <fieldset id="personal">
         <legend>1. Personal Information</legend>
         <div class="form-grid">
             <div class="form-field">
@@ -48,7 +59,7 @@ technical skills, internship experience, and Final Year Project preferences.</p>
         </div>
     </fieldset>
 
-    <fieldset>
+    <fieldset id="academic">
         <legend>2. Academic Information</legend>
         <div class="form-grid">
             <div class="form-field">
@@ -91,7 +102,7 @@ technical skills, internship experience, and Final Year Project preferences.</p>
         </fieldset>
     </fieldset>
 
-    <fieldset>
+    <fieldset id="technical">
         <legend>3. Technical Background</legend>
         <p id="skills-help">Select all areas in which you have experience:</p>
         <div class="skills-grid" role="group" aria-labelledby="skills-help">
@@ -132,7 +143,7 @@ technical skills, internship experience, and Final Year Project preferences.</p>
         </div>
     </fieldset>
 
-    <fieldset>
+    <fieldset id="project">
         <legend>4. Final Year Project</legend>
         <div class="form-grid">
             <div class="form-field">
@@ -199,4 +210,5 @@ technical skills, internship experience, and Final Year Project preferences.</p>
         <button type="reset">Clear Form</button>
     </div>
 </form>
+</div>
 {% endblock %}
