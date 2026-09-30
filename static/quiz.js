@@ -102,7 +102,7 @@ function buildCorrection() {
     const q = questions[i];
     // Index 0 is a valid answer; only undefined means unanswered.
     const selected = userAnswers[i] === undefined
-      ? "Not answered"
+      ? "Not Answered"
       : q.choices[userAnswers[i]];
     const result = userAnswers[i] === q.answer ? "Correct" : "Incorrect";
     correction += `Question ${i + 1}: ${q.question}\n`;

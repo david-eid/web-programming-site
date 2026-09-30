@@ -16,7 +16,7 @@ vm.runInContext(`
   goNext(); check(currentQuestion, questions.length - 1);
   goFirst(); check(currentQuestion, 0); check(userAnswers[1], 1);
   userAnswers.fill(undefined); check(calculateScore(), 0);
-  check(buildCorrection().split('Your answer: Not answered').length - 1, questions.length);
+  check(buildCorrection().split('Your answer: Not Answered').length - 1, questions.length);
   for (let i = 0; i < questions.length; i++) userAnswers[i] = questions[i].answer;
   check(calculateScore(), questions.length); check(calculatePercentage(calculateScore()), 100);
   for (let i = 0; i < questions.length; i++) userAnswers[i] = (questions[i].answer + 1) % questions[i].choices.length;

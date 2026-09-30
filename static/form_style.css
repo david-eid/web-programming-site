@@ -41,27 +41,38 @@
     border: 1px solid var(--border-gold);
     border-radius: var(--radius-medium);
     background: var(--bg-secondary);
+    overflow: hidden;
 }
 .profile-sections li { display: flex; min-width: 0; margin: 0; }
 .profile-sections li + li { border-left: 1px solid var(--border-color); }
 .profile-sections a {
     display: flex;
     width: 100%;
+    min-width: 0;
     height: 100%;
-    min-height: 76px;
     align-items: center;
     gap: 0.75rem;
-    padding: 1rem 1.25rem;
-    border-radius: var(--radius-small);
+    padding: 15px 20px;
+    border-radius: 0;
     color: var(--text-primary);
     font-size: 0.85rem;
     font-weight: 550;
     line-height: 1.4;
     text-decoration: none;
 }
-.profile-sections span { color: var(--accent-gold); font-size: 0.75rem; letter-spacing: 0.06em; }
+.profile-sections span { color: inherit; font-size: 0.75rem; letter-spacing: 0.06em; }
 .profile-sections a:hover { background: var(--accent-gold-soft); color: var(--accent-gold); }
-.profile-sections a:focus-visible { outline-offset: -4px; }
+.profile-sections a:focus-visible { border-radius: 0; outline-offset: -4px; }
+
+/* Follow the existing section anchors; Personal is selected initially. */
+.profile-page:not(:has(.profile-form > fieldset:target)) .profile-sections a[href="#personal"],
+.profile-page:has(#personal:target) .profile-sections a[href="#personal"],
+.profile-page:has(#academic:target) .profile-sections a[href="#academic"],
+.profile-page:has(#technical:target) .profile-sections a[href="#technical"],
+.profile-page:has(#project:target) .profile-sections a[href="#project"] {
+    color: var(--accent-gold);
+    box-shadow: inset 0 -1px 0 var(--accent-gold);
+}
 
 .profile-form fieldset {
     min-width: 0;
@@ -192,8 +203,10 @@
 @media (max-width: 699px) {
     .profile-intro { margin-bottom: 1.85rem; }
     .profile-intro h2 { margin-bottom: 1.2rem; }
-    .profile-sections { margin-bottom: 2.5rem; }
-    .profile-sections a { min-height: 82px; flex-direction: column; justify-content: center; gap: 0.35rem; padding: 0.75rem 0.3rem; font-size: 0.7rem; text-align: center; }
+    .profile-sections { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 2.5rem; }
+    .profile-sections li:nth-child(odd) { border-left: 0; }
+    .profile-sections li:nth-child(n + 3) { border-top: 1px solid var(--border-color); }
+    .profile-sections a { gap: 0.5rem; padding: 15px 12px; font-size: 0.7rem; }
     .profile-form fieldset { margin-bottom: 2rem; }
     .profile-form > fieldset > legend { font-size: 0.95rem; }
     .profile-form .form-actions button { flex: 1 1 180px; }
