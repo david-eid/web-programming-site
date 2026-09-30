@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block title %} Quiz {% endblock %} {% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='quiz.css') }}" />
+{% endblock %} {% block content%}
+<div class="quiz-app container">
+  <p class="quiz-eyebrow">WEEK 05 / PUT YOUR KNOWLEDGE TO THE TEST</p>
+  <h2>JavaScript Quiz</h2>
+  <p class="quiz-intro">Ten questions on JavaScript fundamentals. Move freely between questions; your selections stay saved until you leave or reload this page. Unanswered questions earn no points.</p>
+  <noscript>Enable JavaScript in your browser to take this quiz.</noscript>
+  <section id="quizPanel">
+    <p id="progress"></p>
+    <h2 id="questionText"></h2>
+    <div id="choices" role="radiogroup" aria-labelledby="questionText"></div>
+    <div class="navigation">
+      <button type="button" id="firstBtn" onclick="goFirst()">First</button>
+      <button type="button" id="previousBtn" onclick="goPrevious()">Previous</button>
+      <button type="button" id="nextBtn" onclick="goNext()">Next</button>
+      <button type="button" id="lastBtn" onclick="goLast()">Last</button>
+    </div>
+    <button type="button" class="submit" onclick="submitQuiz()">Submit Quiz</button>
+  </section>
+  <section id="resultsPanel" aria-live="polite">
+    <h2>Quiz Results</h2>
+    <p id="scoreText"></p>
+    <p id="percentageText"></p>
+    <p id="performanceText"></p>
+    <h3>Correction</h3>
+    <pre id="correction"></pre>
+  </section>
+</div>
+<script src="{{ url_for('static', filename='quiz.js') }}"></script>
+{% endblock %}

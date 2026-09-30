@@ -12,3 +12,7 @@ __pycache__/
 # Editor
 .vscode/
 .DS_Store
+
+# Local generation dependencies and temporary previews
+.codex-tmp/
+tmp/
