@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}
+Week 3 — Research
+{% endblock %}
+
+{% block content %}
+<div class="research-page">
+    <div class="home-intro">
+        <p class="home-eyebrow">GIN446 / WEEK 3</p>
+        <h2>Week 3 — Research</h2>
+        <span class="home-title-rule" aria-hidden="true"></span>
+    </div>
+
+    <section class="research-overview" aria-labelledby="overview">
+        <div class="research-overview-content">
+            <h3 id="overview">Overview</h3>
+            <p>This page contains research about different topics used in web programming. It covers CSS at-rules, HTML buttons, datalist and select elements, and some important JavaScript terms and functions.</p>
+        </div>
+        <ol class="research-sections" aria-label="Research topics">
+            <li><a href="#overview">OVERVIEW</a></li>
+            <li><a href="#css-at-rules">CSS AT-RULES</a></li>
+            <li><a href="#buttons">BUTTONS</a></li>
+            <li><a href="#datalist-select">DATALIST VS SELECT</a></li>
+            <li><a href="#javascript">JAVASCRIPT</a></li>
+        </ol>
+    </section>
+
+    <section aria-labelledby="css-at-rules">
+        <h3 id="css-at-rules">CSS At-Rules</h3>
+        <p>At-rules begin with <code>@</code> and give CSS special instructions. Some end with a semicolon; others contain a block of rules. They can load styles, apply conditions, or describe animations.</p>
+        <pre><code>/* Apply these styles when printing. */
+@media print {
+    nav { display: none; }
+}</code></pre>
+        <article aria-labelledby="media">
+        <h4 id="media">@media</h4>
+        <p>A media query applies styles only when a condition matches. For example, a two-column layout can become one column on a narrow screen.</p>
+        <pre><code>.notes { display: grid; grid-template-columns: 1fr 1fr; }
+
+@media (max-width: 600px) {
+    .notes { grid-template-columns: 1fr; }
+}</code></pre>
+        </article>
+        <article aria-labelledby="import">
+        <h4 id="import">@import</h4>
+        <p><code>@import</code> loads rules from another stylesheet. Put it before ordinary style rules. A separate HTML stylesheet link is often preferable because imports can delay loading.</p>
+        <pre><code>/* At the start of a CSS file: */
+@import url("colors.css");
+
+p { line-height: 1.6; }</code></pre>
+        </article>
+        <article aria-labelledby="keyframes">
+        <h4 id="keyframes">@keyframes</h4>
+        <p><code>@keyframes</code> defines stages of an animation. The <code>animation</code> property attaches that named sequence to an element and sets its timing.</p>
+        <pre><code>@keyframes appear {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.notice { animation: appear 1s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+    .notice { animation: none; }
+}</code></pre>
+        </article>
+    </section>
+
+    <section aria-labelledby="buttons">
+        <h3 id="buttons">&lt;button&gt; vs &lt;input type="button"&gt;</h3>
+        <p>Both create clickable buttons. A <code>&lt;button&gt;</code> can contain text and markup, while an <code>&lt;input type="button"&gt;</code> uses its <code>value</code> as a plain text label. Neither example below performs an action until JavaScript is connected.</p>
+        <p>Set <code>type="button"</code> explicitly on a button that should not submit a form: a regular button inside a form defaults to submitting it.</p>
+        <pre><code>&lt;button type="button"&gt;&lt;strong&gt;Show&lt;/strong&gt; details&lt;/button&gt;
+&lt;input type="button" value="Show details"&gt;</code></pre>
+    </section>
+
+    <section aria-labelledby="datalist-select">
+        <h3 id="datalist-select">&lt;datalist&gt; vs &lt;select&gt;</h3>
+        <p>A <code>&lt;datalist&gt;</code> supplies suggestions for an input, but the user can still enter another value. A <code>&lt;select&gt;</code> asks the user to choose from its listed options. Use suggestions for flexible answers and a select for a fixed set of choices.</p>
+        <pre><code>&lt;label for="topic"&gt;Topic (or enter your own)&lt;/label&gt;
+&lt;input id="topic" name="topic" list="topics"&gt;
+&lt;datalist id="topics"&gt;
+    &lt;option value="CSS"&gt;&lt;/option&gt;
+    &lt;option value="JavaScript"&gt;&lt;/option&gt;
+&lt;/datalist&gt;
+
+&lt;label for="level"&gt;Level&lt;/label&gt;
+&lt;select id="level" name="level"&gt;
+    &lt;option value="beginner"&gt;Beginner&lt;/option&gt;
+    &lt;option value="advanced"&gt;Advanced&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+    </section>
+
+    <section aria-labelledby="javascript">
+        <h3 id="javascript">JavaScript</h3>
+        <p>JavaScript is a programming language used to add behavior to web pages. In a browser, it can respond to clicks, calculate values, and update the document through the DOM (Document Object Model).</p>
+        <pre><code>// Update an existing element with id="status".
+const status = document.getElementById("status");
+status.textContent = "Ready to learn!";</code></pre>
+        <article aria-labelledby="jscript">
+        <h4 id="jscript">JScript</h4>
+        <p>JScript was Microsoft's implementation of the ECMAScript language, associated with Internet Explorer and Windows scripting. It shared much of JavaScript's syntax, but legacy environments could behave differently. It is a historical topic rather than a choice for this portfolio.</p>
+        <pre><code>// A simple expression in classic JScript syntax:
+var course = "Web Programming";
+var message = "Welcome to " + course;</code></pre>
+        </article>
+        <article aria-labelledby="ecmascript">
+        <h4 id="ecmascript">ECMAScript</h4>
+        <p>ECMAScript is the standard that defines the core language implemented by JavaScript. It describes features such as variables, functions, and objects. Browser features such as <code>document</code> are provided by web APIs, not by the core language standard.</p>
+        <pre><code>// let, const, and arrow functions were introduced in ES2015.
+const double = (number) =&gt; number * 2;
+let score = double(4); // 8</code></pre>
+        </article>
+        <article aria-labelledby="calling-functions">
+        <h4 id="calling-functions">Calling a JavaScript function</h4>
+        <p>Defining a function gives a reusable task a name. Calling it with parentheses runs the task; arguments supply its inputs. An event listener can also call a function when a user clicks a button.</p>
+        <pre><code>&lt;button type="button" id="greet"&gt;Say hello&lt;/button&gt;
+&lt;p id="greeting" aria-live="polite"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+
+console.log(greet("David")); // Direct function call
+
+document.getElementById("greet").addEventListener("click", () =&gt; {
+    document.getElementById("greeting").textContent = greet("David");
+});
+&lt;/script&gt;</code></pre>
+        <p>Here the script follows the HTML so the elements exist before it attaches the listener. These snippets are examples to study; they do not execute on this page.</p>
+        </article>
+    </section>
+
+</div>
+{% endblock %}
