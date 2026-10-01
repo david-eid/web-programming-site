@@ -63,7 +63,13 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url_for('research') }}"{% if request.endpoint == 'research' %} aria-current="page"{% endif %}>Research</a>
+                </li>
+                <li>
                     <a href="{{ url_for('submit_profile') }}"{% if request.endpoint == 'submit_profile' %} aria-current="page"{% endif %}>Student Profile</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('quiz') }}"{% if request.endpoint == 'quiz' %} aria-current="page"{% endif %}>JavaScript App</a>
                 </li>
             </ul>
         </nav>
