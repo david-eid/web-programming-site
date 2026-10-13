@@ -74,13 +74,19 @@ try:
     click('button[type=submit]')
     assert not review_visible() and not posts
     fill({'student_id': '001234567', 'fullname': '<img src=x onerror=alert(1)>',
-          'email': 'student@example.com', 'major': 'computer', 'gpa': '85'})
+          'email': 'student@net.edu.lb', 'major': 'computer', 'gpa': '85'})
     click('#graduation-spring')
     click('#confirmation')
+    assert js('return document.getElementById("email").checkValidity()')
     for field, invalid, valid in [
         ('student_id', '123', '001234567'), ('fullname', '', 'Test Student'),
         ('student_id', '12345678a', '001234567'),
-        ('email', 'invalid', 'student@example.com'), ('major', '', 'computer'),
+        ('email', 'invalid', 'student@net.edu.lb'),
+        ('email', '', 'student@net.edu.lb'),
+        ('email', '@net.edu.lb', 'student@net.edu.lb'),
+        ('email', 'student@@net.edu.lb', 'student@net.edu.lb'),
+        ('email', 'student@gmail.com', 'student@net.edu.lb'),
+        ('email', 'student@net.edu.lb.example.com', 'student@net.edu.lb'), ('major', '', 'computer'),
         ('gpa', '39', '85'), ('gpa', '101', '85'),
         ('credits', '-1', '0'), ('credits', '149', '0'),
         ('team_size', '0', '2'), ('team_size', '7', '2'),
@@ -90,6 +96,9 @@ try:
         click('button[type=submit]')
         assert not review_visible() and not posts, field
         assert js('return document.getElementById(arguments[0]).validationMessage.length > 0', field)
+        if field == 'email':
+            assert not js('return document.getElementById("email").checkValidity()')
+            print(f'PASS: email {invalid!r} blocked; review closed; no POST')
         fill({field: valid})
     click('#confirmation')
     click('button[type=submit]')
@@ -158,6 +167,12 @@ try:
     assert not review_visible() and not posts
     fill({'gpa': '85'})
     click('button[type=submit]')
+    # The final confirmation must also reject an email changed after review.
+    fill({'email': 'student@gmail.com'})
+    click('#confirm-profile')
+    assert not review_visible() and not posts
+    fill({'email': 'student@net.edu.lb'})
+    click('button[type=submit]')
     grouped['project_title'] = ['Edited project']
     Path('tmp').mkdir(exist_ok=True)
     driver.save_screenshot('tmp/week6-review-desktop.png')
@@ -181,6 +196,9 @@ try:
     assert not js('return Boolean(window.originalDocument)')
     assert 'Edited project' in driver.find_element(By.CSS_SELECTOR, 'article.profile').text
     result = driver.find_element(By.CSS_SELECTOR, 'article.profile').text
+    assert 'student@net.edu.lb' in result
+    assert posts[0]['email'] == ['student@net.edu.lb']
+    print('PASS: student@net.edu.lb accepted through review, Edit, and final server result')
     assert all(value in result for value in ['001234567', 'Programming', 'Matlab', 'Vivado', '2026-2027'])
     print('PASS: native validation, 25 review rows, all values, multi-select, empty options, safe text,')
     print('Edit/state retention, refreshed review, no early requests/reloads, confirmation revalidation,')
