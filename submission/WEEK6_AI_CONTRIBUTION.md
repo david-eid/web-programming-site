@@ -1,0 +1,9 @@
+# Week 6 AI contribution statement (draft for student review)
+
+I used OpenAI Codex for implementation assistance on my existing Week 4 Flask project. Codex read the two supplied Week 6 PDFs and inspected the existing form, Python server, result template, and deployment configuration. It wrote the Week 6 JavaScript submission interception, native-validation checks, read-only review, Edit behavior, and final native submission. It also added the review HTML and CSS, authored an automated browser integration test, and prepared a beginner-friendly line-by-line explanation, manual testing checklist, and GitHub/Render handoff.
+
+This assistance included generated implementation and testing code, not only explanations. The original server and result template were kept unchanged. The test results and limitations are recorded in `WEEK6.md`. Codex did not push this work to GitHub or deploy it to Render.
+
+During the follow-up, Codex investigated the browser-test failures, corrected the test's scrolling and expected native textarea newline serialization, expanded the checks, and successfully ran the full flow in local headless Chrome. Checks covered invalid inputs, all review fields, empty optional fields, multiple selections, preserved answers on Edit, keyboard submission, safe text display, a 390-pixel viewport, and one genuine POST to the original result page. Codex also checked the existing deployment files and prepared manual conversation-PDF export and deployment instructions. These tests do not establish that the site has been deployed or tested on Render, other browsers, or a physical phone.
+
+I must review and understand the code, verify my final submission, and export the actual conversation. This draft does not assert that I have already completed those steps or independently written the AI-generated code.

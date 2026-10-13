@@ -4,6 +4,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='form_style.css') }}">
+<script src="{{ url_for('static', filename='profile-validation.js') }}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -23,7 +24,7 @@ technical skills, internship experience, and Final Year Project preferences.</p>
     <li><a href="#project"><span aria-hidden="true">04</span>Final Year Project</a></li>
 </ol>
 
-<form class="profile-form" action="{{ url_for('submit_profile') }}" method="post">
+<form id="profile-form" class="profile-form" action="{{ url_for('submit_profile') }}" method="post">
     <fieldset id="personal">
         <legend>1. Personal Information</legend>
         <div class="form-grid">
@@ -210,5 +211,14 @@ technical skills, internship experience, and Final Year Project preferences.</p>
         <button type="reset">Clear Form</button>
     </div>
 </form>
+<section id="profile-review" class="profile-review is-hidden" aria-labelledby="review-heading">
+    <h2 id="review-heading" tabindex="-1">Review your profile</h2>
+    <p>Check your answers below. Choose Edit to make changes, or Confirm &amp; Submit to send your profile.</p>
+    <dl id="review-values"></dl>
+    <div class="review-actions">
+        <button id="edit-profile" type="button">Edit</button>
+        <button id="confirm-profile" type="button">Confirm &amp; Submit</button>
+    </div>
+</section>
 </div>
 {% endblock %}
