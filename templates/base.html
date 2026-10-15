@@ -1,103 +1,81 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Support text characters, including Arabic. -->
     <meta charset="UTF-8">
-
-    <!-- Use the device's width on mobile. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Browser-tab title; each page can replace it. -->
     <title>{% block title %}Web Programming Portfolio{% endblock %}</title>
 
-    <!-- Load the shared website styles. -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-    <!-- Let each page add extra styles or head content. -->
     {% block head %}{% endblock %}
 </head>
 
 <body>
 
-    <!-- Shared header shown on pages using this template. -->
+    <!-- Header -->
     <header class="site-header">
         <div class="hero">
             <div class="hero-brand">
                 <div class="logo">
-                    <!-- Click the name to open the home page. -->
                     <a href="{{ url_for('home') }}">David Eid</a>
                 </div>
             </div>
 
             <div class="hero-content">
-                <!-- Decorative watermark; ignored by screen readers. -->
                 <span class="hero-watermark" aria-hidden="true">GIN446</span>
 
-                <!-- Main heading; each page can replace it. -->
                 <h1>
                     {% block heading %}
                     Web Programming Portfolio &mdash; David Eid
                     {% endblock %}
                 </h1>
 
-                <!-- Decorative line styled with CSS. -->
                 <span class="hero-rule" aria-hidden="true"></span>
-
-                <!-- Text below the main heading. -->
                 <p class="hero-subtitle">A live site that grows one page or feature every week.</p>
             </div>
         </div>
 
-        <!-- Website navigation menu. -->
+        <!-- Navigation -->
         <nav class="main-nav" aria-label="Primary navigation">
             <ul>
-                <!-- url_for creates the link; the condition marks the current page. -->
-
-                <!-- Home page. -->
                 <li>
                     <a href="{{ url_for('home') }}"{% if request.endpoint == 'home' %} aria-current="page"{% endif %}>Home</a>
                 </li>
 
-                <!-- Internet history page. -->
                 <li>
                     <a href="{{ url_for('internet_history') }}"{% if request.endpoint == 'internet_history' %} aria-current="page"{% endif %}>
                         Internet History
                     </a>
                 </li>
 
-                <!-- Web history page. -->
                 <li>
                     <a href="{{ url_for('web_history') }}"{% if request.endpoint == 'web_history' %} aria-current="page"{% endif %}>
                         Web History
                     </a>
                 </li>
 
-                <!-- AI version of the internet history page. -->
                 <li>
                     <a href="{{ url_for('internet_history_ai') }}"{% if request.endpoint == 'internet_history_ai' %} aria-current="page"{% endif %}>
                         Internet History AI
                     </a>
                 </li>
 
-                <!-- AI version of the web history page. -->
                 <li>
                     <a href="{{ url_for('web_history_ai') }}"{% if request.endpoint == 'web_history_ai' %} aria-current="page"{% endif %}>
                         Web History AI
                     </a>
                 </li>
 
-                <!-- Research page. -->
                 <li>
                     <a href="{{ url_for('research') }}"{% if request.endpoint == 'research' %} aria-current="page"{% endif %}>Research</a>
                 </li>
 
-                <!-- Student profile form. -->
                 <li>
                     <a href="{{ url_for('submit_profile') }}"{% if request.endpoint == 'submit_profile' %} aria-current="page"{% endif %}>Student Profile</a>
                 </li>
 
-                <!-- Open the JavaScript quiz page. -->
                 <li>
                     <a href="{{ url_for('quiz') }}"{% if request.endpoint == 'quiz' %} aria-current="page"{% endif %}>JavaScript App</a>
                 </li>
@@ -105,13 +83,13 @@
         </nav>
     </header>
 
-    <!-- Each page inserts its own content here. -->
+    <!-- Page content -->
     <main>
         {% block content %}
         {% endblock %}
     </main>
 
-    <!-- Shared information at the bottom of the website. -->
+    <!-- Footer -->
     <footer>
         <p>Web Programming — built with Flask and deployed on Render.</p>
 
