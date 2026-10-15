@@ -1,31 +1,90 @@
-{% extends "base.html" %} {% block title %} Quiz {% endblock %} {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='quiz.css') }}" />
-{% endblock %} {% block content%}
+{# Use the shared website layout. #}
+{% extends "base.html" %}
+
+{# Browser-tab title. #}
+{% block title %}Quiz{% endblock %}
+
+{% block head %}
+<!-- Load quiz CSS. -->
+<link rel="stylesheet" href="{{ url_for('static', filename='quiz.css') }}">
+{% endblock %}
+
+{% block content %}
 <div class="quiz-app container">
+
+  <!-- Heading and instructions. -->
   <p class="quiz-eyebrow">WEEK 05 / PUT YOUR KNOWLEDGE TO THE TEST</p>
+
   <h2>JavaScript Quiz</h2>
-  <p class="quiz-intro">Ten questions on JavaScript fundamentals. Move freely between questions; your selections stay saved until you leave or reload this page. Unanswered questions earn no points.</p>
+
+  <p class="quiz-intro">
+    Ten questions on JavaScript fundamentals.
+    Move freely between questions; your selections stay saved
+    until you leave or reload this page.
+    Unanswered questions earn no points.
+  </p>
+
+  <!-- Message if JavaScript is disabled. -->
   <noscript>Enable JavaScript in your browser to take this quiz.</noscript>
+
+  <!-- Questions and buttons. -->
   <section id="quizPanel">
+
+    <!-- JavaScript fills these with the question and choices. -->
     <p id="progress"></p>
     <h2 id="questionText"></h2>
-    <div id="choices" role="radiogroup" aria-labelledby="questionText"></div>
-    <div class="navigation">
-      <button type="button" id="firstBtn" onclick="goFirst()">First</button>
-      <button type="button" id="previousBtn" onclick="goPrevious()">Previous</button>
-      <button type="button" id="nextBtn" onclick="goNext()">Next</button>
-      <button type="button" id="lastBtn" onclick="goLast()">Last</button>
+
+    <div
+      id="choices"
+      role="radiogroup"
+      aria-labelledby="questionText">
     </div>
-    <button type="button" class="submit" onclick="submitQuiz()">Submit Quiz</button>
+
+    <!-- Clicking a button runs its JavaScript function. -->
+    <div class="navigation">
+
+      <button type="button" id="firstBtn" onclick="goFirst()">
+        First
+      </button>
+
+      <button type="button" id="previousBtn" onclick="goPrevious()">
+        Previous
+      </button>
+
+      <button type="button" id="nextBtn" onclick="goNext()">
+        Next
+      </button>
+
+      <button type="button" id="lastBtn" onclick="goLast()">
+        Last
+      </button>
+
+    </div>
+
+    <!-- Calculate and show results. -->
+    <button type="button" class="submit" onclick="submitQuiz()">
+      Submit Quiz
+    </button>
+
   </section>
+
+  <!-- Hidden by CSS until JavaScript shows it. -->
   <section id="resultsPanel" aria-live="polite">
+
     <h2>Quiz Results</h2>
+
+    <!-- JavaScript inserts the results here. -->
     <p id="scoreText"></p>
     <p id="percentageText"></p>
     <p id="performanceText"></p>
+
     <h3>Correction</h3>
     <pre id="correction"></pre>
+
   </section>
+
 </div>
+
+<!-- Load quiz JavaScript. -->
 <script src="{{ url_for('static', filename='quiz.js') }}"></script>
 {% endblock %}

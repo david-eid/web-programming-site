@@ -1,6 +1,6 @@
-// ======================================================
-// QUESTIONS
-// ======================================================
+
+// The questions, choices, correct answers, and explanations.
+
 const questions = [
   {question: "Which keyword declares a block-scoped variable that can later be reassigned?", choices: ["var", "let", "const", "static"], answer: 1, explanation: "let declares a block-scoped variable whose value may later be reassigned."},
   {question: "Which JavaScript operator tests strict equality?", choices: ["=", "==", "===", "!="], answer: 2, explanation: "The === operator compares both value and type."},
@@ -13,78 +13,69 @@ const questions = [
   {question: "What does 'JavaScript'.toUpperCase() return?", choices: ["javascript", "JavaScript", "JAVASCRIPT", "Java Script"], answer: 2, explanation: "toUpperCase() returns a new string with its letters converted to uppercase."},
   {question: "What is the value of true && false?", choices: ["true", "false"], answer: 1, explanation: "Logical AND is true only when both Boolean operands are true."}
 ];
-// Each question object should have the following structure:
-//   {
-//     question:
-//       "Which keyword declares a block-scoped variable that can later be reassigned?",
-//     choices: ["var", "let", "const", "static"],
-//     answer: 1,
-//     explanation:
-//       "let declares a block-scoped variable whose value may later be reassigned.",
-//   },
 
-// ======================================================
-// APPLICATION STATE
-// ======================================================
+// Start at the first question.
 let currentQuestion = 0;
+
+// Store the user's answer for each question.
 const userAnswers = new Array(questions.length);
 
-// ======================================================
-// SAVE AN ANSWER
-// ======================================================
+// Save the selected choice's index.
 function saveAnswer(choiceIndex) {
   userAnswers[currentQuestion] = choiceIndex;
 }
 
-// ======================================================
-// NAVIGATION
-// ======================================================
+// Next button.
 function goNext() {
+  // Stop at the last question.
   if (currentQuestion < questions.length - 1) {
     currentQuestion++;
     renderQuestion();
   }
 }
 
+// Previous button.
 function goPrevious() {
+  // Stop at the first question.
   if (currentQuestion > 0) {
     currentQuestion--;
     renderQuestion();
   }
 }
 
+// First button.
 function goFirst() {
   currentQuestion = 0;
   renderQuestion();
 }
+
+// Last button.
 function goLast() {
   currentQuestion = questions.length - 1;
   renderQuestion();
 }
 
-// ======================================================
-// CALCULATE SCORE
-// ======================================================
+// Count the correct answers.
 function calculateScore() {
   let score = 0;
+
+  // Check every question.
   for (let i = 0; i < questions.length; i++) {
+    // Add one point if the answer is correct.
     if (userAnswers[i] === questions[i].answer) {
       score++;
     }
   }
+
   return score;
 }
 
-// ======================================================
-// CALCULATE PERCENTAGE
-// ======================================================
+// Convert the score to a rounded percentage.
 function calculatePercentage(score) {
   return Math.round((score / questions.length) * 100);
 }
 
-// ======================================================
-// PERFORMANCE MESSAGE
-// ======================================================
+// Choose a message based on the percentage.
 function getPerformanceMessage(percentage) {
   if (percentage >= 80) return "Excellent";
   if (percentage >= 60) return "Good";
@@ -92,19 +83,22 @@ function getPerformanceMessage(percentage) {
   return "Needs improvement";
 }
 
-// ======================================================
-// BUILD CORRECTION
-// ======================================================
+// Prepare the correction text.
 function buildCorrection() {
   let correction = "";
 
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
-    // Index 0 is a valid answer; only undefined means unanswered.
+
+    // undefined means unanswered; 0 means the first choice.
     const selected = userAnswers[i] === undefined
       ? "Not Answered"
       : q.choices[userAnswers[i]];
+
+    // Check whether the answer is correct.
     const result = userAnswers[i] === q.answer ? "Correct" : "Incorrect";
+
+    // Add feedback. \n starts a new line.
     correction += `Question ${i + 1}: ${q.question}\n`;
     correction += `Your answer: ${selected}\n`;
     correction += `Correct answer: ${q.choices[q.answer]}\n`;
@@ -115,15 +109,9 @@ function buildCorrection() {
   return correction;
 }
 
-// ======================================================
 // PROVIDED INTERFACE CODE
-//
-// DOM manipulation and events will be studied later.
-// ======================================================
 
-// ======================================================
-// SUBMIT QUIZ
-// ======================================================
+// Submit button: calculate and display results.
 function submitQuiz() {
   const score = calculateScore();
   const percentage = calculatePercentage(score);
@@ -132,64 +120,67 @@ function submitQuiz() {
   showResults(score, percentage, message, correction);
 }
 
+// Display the current question and choices.
 function renderQuestion() {
   const q = questions[currentQuestion];
 
-  // --------------------------------------------------
-  // QUESTION NUMBER
-  // --------------------------------------------------
+  // Display "Question 1 of 10", etc.
   document.getElementById("progress").textContent =
     `Question ${currentQuestion + 1} of ${questions.length}`;
 
-  // --------------------------------------------------
-  // QUESTION
-  // --------------------------------------------------
+  // Display the question text.
   document.getElementById("questionText").textContent = q.question;
 
-  // --------------------------------------------------
-  // CHOICES
-  // --------------------------------------------------
+  // Clear the old choices.
   const choicesContainer = document.getElementById("choices");
   choicesContainer.innerHTML = "";
+
+  // Create each answer choice.
   for (let i = 0; i < q.choices.length; i++) {
     const label = document.createElement("label");
     label.className = "choice";
+
     const radio = document.createElement("input");
     radio.type = "radio";
+
+    // Same name allows only one selected answer.
     radio.name = "answer";
     radio.value = i;
-    // Restore an answer previously selected
-    // by the user.
+
+    // Restore the previously selected answer.
     if (userAnswers[currentQuestion] === i) {
       radio.checked = true;
     }
-    // When the user selects this answer,
-    // save its index.
+
+    // Save the answer when clicked.
     radio.onclick = function () {
       saveAnswer(i);
     };
+
+    // Add the radio button and its text to the page.
     label.appendChild(radio);
     label.appendChild(document.createTextNode(" " + q.choices[i]));
     choicesContainer.appendChild(label);
   }
 
-  // --------------------------------------------------
-  // NAVIGATION BUTTONS
-  // --------------------------------------------------
+  // Disable First and Previous on the first question.
   document.getElementById("firstBtn").disabled = currentQuestion === 0;
   document.getElementById("previousBtn").disabled = currentQuestion === 0;
+
+  // Disable Next and Last on the last question.
   document.getElementById("nextBtn").disabled =
     currentQuestion === questions.length - 1;
   document.getElementById("lastBtn").disabled =
     currentQuestion === questions.length - 1;
 }
 
-// ======================================================
-// DISPLAY RESULTS
-// ======================================================
+// Show the results on the page.
 function showResults(score, percentage, message, correction) {
+  // Hide the quiz and show the results.
   document.getElementById("quizPanel").style.display = "none";
   document.getElementById("resultsPanel").style.display = "block";
+
+  // Fill the result elements with text.
   document.getElementById("scoreText").textContent =
     `Score: ${score} / ${questions.length}`;
   document.getElementById("percentageText").textContent =
@@ -198,7 +189,5 @@ function showResults(score, percentage, message, correction) {
   document.getElementById("correction").textContent = correction;
 }
 
-// ======================================================
-// START APPLICATION
-// ======================================================
+// Show the first question when the page opens.
 renderQuestion();
