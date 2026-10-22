@@ -1,0 +1,17 @@
+/* Week 7 feedback; the shared Week 5 quiz design stays unchanged. */
+.quiz-app #loading { color: var(--accent-gold); }
+.quiz-app #error {
+  padding: 1rem;
+  border: 1px solid var(--accent-gold);
+  border-radius: var(--radius-small);
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+.quiz-app [hidden] { display: none !important; }
+.quiz-app #questionText:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 4px;
+}
+@media (max-width: 360px) {
+  .quiz-app .navigation button { padding-inline: .4rem; }
+}

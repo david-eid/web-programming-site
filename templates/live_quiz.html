@@ -1,0 +1,85 @@
+
+{% extends "base.html" %}
+
+{% block title %}Live Quiz{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='quiz.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='live_quiz.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="quiz-app container">
+
+    <p class="quiz-eyebrow">WEEK 07 / PUT YOUR KNOWLEDGE TO THE TEST</p>
+
+    <h2>Live Quiz with Fetch</h2>
+
+    <p class="quiz-intro">
+        JavaScript fundamentals, loaded live from the database.
+        Move freely between questions; your selections stay saved
+        until you leave or reload this page.
+        Unanswered questions earn no points.
+    </p>
+
+    <noscript>Enable JavaScript in your browser to take this quiz.</noscript>
+
+    <!-- Quiz questions -->
+    <section id="quizPanel" aria-busy="true">
+
+        <p id="loading" role="status" hidden>Loading...</p>
+        <p id="error" role="alert" hidden></p>
+        <button type="button" id="retryBtn" onclick="retryQuiz()" hidden>Try again</button>
+
+        <p id="progress" aria-live="polite"></p>
+        <h2 id="questionText" tabindex="-1"></h2>
+
+        <div id="choices" role="radiogroup" aria-labelledby="questionText"></div>
+
+        <!-- Navigation buttons -->
+        <div class="navigation">
+
+            <button type="button" id="firstBtn" disabled onclick="goFirst()">
+                First
+            </button>
+
+            <button type="button" id="previousBtn" disabled onclick="goPrevious()">
+                Previous
+            </button>
+
+            <button type="button" id="nextBtn" disabled onclick="goNext()">
+                Next
+            </button>
+
+            <button type="button" id="lastBtn" disabled onclick="goLast()">
+                Last
+            </button>
+
+        </div>
+
+        <button type="button" id="submitBtn" disabled class="submit" onclick="submitQuiz()">
+            Submit Quiz
+        </button>
+
+    </section>
+
+    <!-- Quiz results -->
+    <section id="resultsPanel" aria-live="polite">
+
+        <h2>Quiz Results</h2>
+
+        <p id="scoreText"></p>
+        <p id="percentageText"></p>
+        <p id="performanceText"></p>
+
+        <h3>Correction</h3>
+        <pre id="correction"></pre>
+
+    </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='live_quiz.js') }}"></script>
+
+{% endblock %}

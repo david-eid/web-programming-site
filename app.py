@@ -39,6 +39,8 @@ Example inside profile.html (which extends your base.html):
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
+from quiz_api import init_quiz
+init_quiz(app)
 
 
 @app.route("/")
@@ -52,6 +54,7 @@ def home():
         {"week": 3, "title": "Research", "url": "/research"},
         {"week": 4, "title": "Engineering Student Profile", "url": "/submit-profile"},
         {"week": 5, "title": "JavaScript app", "url": "/quiz"},
+        {"week": 7, "title": "Live Quiz with Fetch", "url": "/live-quiz"},
     ]
     return render_template("index.html", weekly_work=weekly_work)
 
