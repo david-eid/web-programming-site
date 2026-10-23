@@ -14,7 +14,9 @@ so it is safe to run more than once.
 """
 
 import json
+import sys
 from flask import Flask
+from sqlalchemy import select, func, text
 from quiz_api import db, Question, database_uri
 
 QUESTIONS = [
@@ -129,25 +131,52 @@ QUESTIONS = [
 ]
 
 
-# A minimal app just for seeding (separate from your web app).
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = database_uri()
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db.init_app(app)
+def seed_database(require_postgres=False):
+    """Insert the assignment once, atomically; never modify existing rows."""
+    app = Flask(__name__)
+    app.config["SQLALCHEMY_DATABASE_URI"] = database_uri()
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {"hide_parameters": True}
+    db.init_app(app)
+    with app.app_context():
+        try:
+            if require_postgres and db.engine.dialect.name != "postgresql":
+                raise RuntimeError("Render startup requires PostgreSQL in DATABASE_URL.")
+            with db.engine.begin() as connection:
+                if connection.dialect.name == "postgresql":
+                    # Serializes overlapping deployments, including table creation.
+                    connection.execute(text("SET LOCAL lock_timeout = '60s'"))
+                    connection.execute(text("SELECT pg_advisory_xact_lock(446, 7)"))
+                elif connection.dialect.name == "sqlite":
+                    connection.exec_driver_sql("BEGIN IMMEDIATE")
+                db.metadata.create_all(connection)
+                table = Question.__table__
+                count = connection.scalar(select(func.count()).select_from(table))
+                if count:
+                    print("Already seeded:", count, "questions.")
+                    if count != len(QUESTIONS):
+                        print("NOTICE: existing question count differs from 10; all rows preserved.")
+                    return count
+                connection.execute(table.insert(), [
+                    dict(q, choices=json.dumps(q["choices"])) for q in QUESTIONS
+                ])
+            print("Seeded", len(QUESTIONS), "questions.")
+            return len(QUESTIONS)
+        finally:
+            db.session.remove()
+            db.engine.dispose()
 
-with app.app_context():
-    db.create_all()
-    if Question.query.count() == 0:
-        for q in QUESTIONS:
-            db.session.add(
-                Question(
-                    question=q["question"],
-                    choices=json.dumps(q["choices"]),
-                    answer=q["answer"],
-                    explanation=q["explanation"],
-                )
-            )
-        db.session.commit()
-        print("Seeded", len(QUESTIONS), "questions.")
-    else:
-        print("Already seeded:", Question.query.count(), "questions.")
+
+def main(require_postgres=False):
+    try:
+        seed_database(require_postgres=require_postgres)
+    except Exception:
+        # Driver exceptions can contain credentials or connection strings.
+        print("Database initialization failed; no partial seed was committed. "
+              "Check DATABASE_URL and database availability in Render.", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

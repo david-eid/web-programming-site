@@ -77,6 +77,8 @@ def database_uri():
       project folder, so the app and seed_db.py share the same file.
     """
     url = os.environ.get("DATABASE_URL")
+    if os.environ.get("RENDER") == "true" and not url:
+        raise RuntimeError("DATABASE_URL is required on Render; SQLite fallback is disabled.")
     if url:
         if url.startswith("postgres://"):
             url = url.replace("postgres://", "postgresql://", 1)
