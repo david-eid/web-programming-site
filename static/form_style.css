@@ -239,3 +239,5 @@
     .profile-sections span { font-size: 0.68rem; }
     .profile-form > fieldset > legend { padding-inline: 0.75rem; }
 }
+
+.profile-form .error { display: block; color: #f49c92; font-size: 0.85rem; overflow-wrap: anywhere; }

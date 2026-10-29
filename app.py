@@ -1,45 +1,14 @@
-"""
-Web Programming — Flask application (Week 4).
+"""Portfolio pages, quizzes, and student profile forms.
 
-Download this file from e-learning and REPLACE all the contents of your existing
-app.py with it. Then run your app as usual.
-
-WHAT THIS FILE DOES (the "black box" for this week)
----------------------------------------------------
-It adds the "Engineering Student Profile" form. You do NOT need to understand this
-code yet — server-side form handling is taught in a later session. For now:
-
-  GET  /submit-profile   -> shows your form   (you build templates/profile_form.html)
-  POST /submit-profile   -> reads the submitted data and shows your profile page
-                            (renders templates/profile.html, which extends your
-                             base.html so it appears in YOUR design / CSS)
-
-HOW THE DATA REACHES THE PROFILE PAGE
--------------------------------------
-When the form is submitted, this route reads every field the form sends and hands
-it to profile.html. Three variables are available inside profile.html:
-
-  data      -> a dictionary of all single-value fields, keyed by the field `name`,
-               e.g. data['fullname'], data['student_id'], data['email'],
-               data['major'], data['gpa'], data['project_title'], ...
-  skills    -> a LIST of the ticked "skills" checkboxes
-  software  -> a LIST of the selected "software" options (from the multiple <select>)
-
-Note: `skills` and `software` can hold several values, so they are read as lists.
-Every other field is a single value inside `data`.
-
-Example inside profile.html (which extends your base.html):
-
-  <h1>{{ data['fullname'] }}</h1>
-  <p>{{ data['major'] }}</p>
-  <p>Skills: {{ skills | join(', ') }}</p>
-  <p>Software: {{ software | join(', ') }}</p>
+Week 6 keeps its browser validation and review flow at /submit-profile.
+Week 8 validates submissions on the server at /profile-validated.
 """
 
 from flask import Flask, render_template, request
+from quiz_api import init_quiz
+from validators import validate_profile
 
 app = Flask(__name__)
-from quiz_api import init_quiz
 init_quiz(app)
 
 
@@ -56,6 +25,7 @@ def home():
         {"week": 5, "title": "JavaScript app", "url": "/quiz"},
         {"week": 6, "title": "JavaScript Form Validation", "url": "/submit-profile"},
         {"week": 7, "title": "Live Quiz with Fetch", "url": "/live-quiz"},
+        {"week": 8, "title": "Server-Side Validation", "url": "/profile-validated"},
     ]
     return render_template("index.html", weekly_work=weekly_work)
 
@@ -87,11 +57,7 @@ def research():
 
 @app.route("/submit-profile", methods=["GET", "POST"])
 def submit_profile():
-    """
-    GET  -> show the profile form (you build templates/profile_form.html).
-    POST -> read the submitted fields and show the profile page
-            (templates/profile.html, which extends your base.html).
-    """
+    """Show the Week 6 form or display its submitted profile."""
     if request.method == "POST":
         data = request.form.to_dict()                   # all single-value fields
         skills = request.form.getlist("skills")         # checkboxes -> list
@@ -100,8 +66,30 @@ def submit_profile():
             "profile.html", data=data, skills=skills, software=software
         )
 
-    # First visit (GET): just show the empty form.
     return render_template("profile-form.html")
+
+
+@app.route("/profile-validated", methods=["GET", "POST"])
+def profile_validated():
+    """Show the form, return field errors, or display a validated profile."""
+    if request.method == "POST":
+        errors, cleaned = validate_profile(request.form)
+        if not errors:
+            return render_template(
+                "profile.html", data=cleaned,
+                skills=cleaned["skills"], software=cleaned["software"]
+            )
+        # Keep the original input so users can correct it without retyping.
+        return render_template(
+            "profile-form-validated.html", errors=errors, data=request.form,
+            sel_skills=request.form.getlist("skills"),
+            sel_software=request.form.getlist("software")
+        )
+    return render_template(
+        "profile-form-validated.html", errors={}, data={},
+        sel_skills=[], sel_software=[]
+    )
+
 
 @app.route("/quiz", methods=["GET", "POST"])
 def quiz():
